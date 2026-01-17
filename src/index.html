@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        <input type="file" name="video" />
+        <input type="text" name="name" placeholder="Food Name" />
+        <input type="text" name="description" placeholder="Food Description" />
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const response = await fetch('/api/food', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.text();
+        console.log("form submitted");
+        console.log(data);
+    });
+</script>
+</html>
